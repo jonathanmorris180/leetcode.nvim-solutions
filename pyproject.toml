@@ -1,0 +1,33 @@
+[project]
+name = "leetcode.nvim"
+description = "LeetCode solutions"
+version = "1.0.0"
+
+[tool.mypy]
+check_untyped_defs = true
+no_implicit_optional = true
+disable_error_code = ["name-defined"]
+disallow_subclassing_any = false
+ignore_missing_imports = true
+hide_error_codes = true
+strict_equality = true
+warn_redundant_casts = true
+warn_return_any = true
+warn_unreachable = true
+warn_unused_configs = true
+warn_unused_ignores = false
+disallow_untyped_calls = false
+no_implicit_reexport = true
+exclude = [".venv"]
+strict = true
+
+[tool.pyright]
+reportOptionalMemberAccess = false # Ignoring this since it just clogs the editor if you have pyright running (via extension or otherwise)
+reportWildcardImportFromLibrary = false
+reportUndefinedVariable = false
+
+[tool.isort]
+profile = "black"
+
+[tool.ruff.lint.per-file-ignores]
+"*" = ["F405", "F403"]
