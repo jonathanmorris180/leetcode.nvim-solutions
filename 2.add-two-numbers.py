@@ -16,22 +16,6 @@ from io import *
 from sys import *
 from json import *
 from builtins import *
-import string
-import re
-import datetime
-import collections
-import heapq
-import bisect
-import copy
-import math
-import random
-import statistics
-import itertools
-import functools
-import operator
-import io
-import sys
-import json
 from typing import *
 
 # @leet imports end
@@ -47,7 +31,39 @@ class Solution:
     def addTwoNumbers(
         self, l1: Optional[ListNode], l2: Optional[ListNode]
     ) -> Optional[ListNode]:
-        pass
+        result = ListNode()
+        curr_result = result
+        rem = 0
+
+        while l1 or l2:
+            val = 0
+            local_rem = 0
+            if l1 and l2:
+                sum = l1.val + l2.val
+                val = sum % 10
+                local_rem = sum // 10
+                l1 = l1.next
+                l2 = l2.next
+            elif l1:
+                val = l1.val
+                l1 = l1.next
+            elif l2:
+                val = l2.val
+                l2 = l2.next
+            sum = val + rem
+            if sum >= 10:
+                val = sum % 10
+                local_rem = sum // 10
+            else:
+                val = sum
+            curr_result.next = ListNode(val)
+            curr_result = curr_result.next
+            rem = local_rem
+
+        if rem > 0:
+            curr_result.next = ListNode(rem)
+
+        return result.next
 
 
 # @leet end
