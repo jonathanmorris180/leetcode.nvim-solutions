@@ -1,21 +1,21 @@
 # @leet imports start
-from string import *
-from re import *
-from datetime import *
-from collections import *
-from heapq import *
 from bisect import *
-from copy import *
-from math import *
-from random import *
-from statistics import *
-from itertools import *
-from functools import *
-from operator import *
-from io import *
-from sys import *
-from json import *
 from builtins import *
+from collections import *
+from copy import *
+from datetime import *
+from functools import *
+from heapq import *
+from io import *
+from itertools import *
+from json import *
+from math import *
+from operator import *
+from random import *
+from re import *
+from statistics import *
+from string import *
+from sys import *
 from typing import *
 
 # @leet imports end
@@ -23,17 +23,16 @@ from typing import *
 
 # @leet start
 class Solution:
-    def twoSum(self, nums: List[int], target: int) -> List[int]:
+    def twoSum(self, nums: list[int], target: int) -> list[int]:
 
         indices: dict[int, int] = {}
 
-        print(f"input is {nums}")
-
         for i, e in enumerate(nums):
-            index_to_check = target - e
-            if index_to_check in indices:
-                return [indices[index_to_check], i]
+            idx = target - e
+            if idx in indices:
+                return [indices[idx], i]
             indices[e] = i
+
         return []
 
 
