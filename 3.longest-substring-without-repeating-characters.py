@@ -44,30 +44,16 @@ class Solution:
         # characters in a set and using two pointers
         # to track the contiguous chars
 
-        if len(s) <= 1:
-            return len(s)
-
         maxSize = 0
-        seen = {s[0]}
+        seen = set()
+        l = 0
 
-        l, r = 0, 1
-
-        while r < len(s):
-            if s[r] in seen:
-                maxSize = max(maxSize, len(seen))
-                seen = set()
-                while r + 1 > len(s) and s[r + 1] == s[r]:
-                    r += 1
-                seen.add(s[r])
-                l = r
-                while l - 1 > 0 and s[l - 1] != s[l] and s[l - 1] not in seen:
-                    l -= 1
-                    seen.add(s[l])
-                r += 1
-                continue
+        for r in range(len(s)):
+            while s[r] in seen:
+                seen.remove(s[l])
+                l += 1
             seen.add(s[r])
             maxSize = max(maxSize, len(seen))
-            r += 1
 
         return maxSize
 
