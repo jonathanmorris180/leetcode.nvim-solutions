@@ -53,19 +53,19 @@ class Solution:
 
         while r < len(s):
             counts[s[r]] += 1
-            while r - l + 1 - self.getLargestCount(counts) > k and l < r:
-                counts[s[l]] = counts[s[l]] - 1 if counts[s[l]] - 1 > 0 else 0
+            # This can be optimized even further to remove
+            # the max() scan below since the window doesn't
+            # actually ever to shrink if you've already found
+            # a valid window with greater size.
+            while r - l + 1 - max(counts.values()) > k:
+                # This can never go below 0 since
+                # we're only removing what we added
+                counts[s[l]] = counts[s[l]] - 1
                 l += 1
             res = max(res, r - l + 1)
             r += 1
 
         return res
-
-    def getLargestCount(self, counts: dict[str, int]):
-        maxC = 0
-        for v in counts.values():
-            maxC = max(maxC, v)
-        return maxC
 
 
 # @leet end
